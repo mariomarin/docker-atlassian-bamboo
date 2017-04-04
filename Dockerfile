@@ -27,6 +27,9 @@ RUN set -x \
                               "${BAMBOO_INSTALL}/conf/server.xml" \
     && touch -d "@0"          "${BAMBOO_INSTALL}/conf/server.xml"
 
+RUN set -x; \
+  groupadd -g 233 docker \
+  && usermod -aG docker daemon
 
 # Use the default unprivileged account. This could be considered bad practice
 # on systems where multiple processes end up being executed by 'daemon' but
